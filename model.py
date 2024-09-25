@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import numpy as np
 import pickle
 import os
+
 app = Flask(__name__)
 
 # Load the pre-trained model and the scaler
@@ -81,8 +82,6 @@ def predict():
         return render_template('index.html', error=str(e))
 
 if __name__ == '__main__':
-    app.run(debug=True)
-# if __name__ == '__main__':
     # Get the port from the environment (Render sets it automatically)
     port = int(os.environ.get('PORT', 5000))  # Fallback to 5000 if no port is found
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
