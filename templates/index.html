@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dementia Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Dementia Prediction Model</h1>
+        <form action="/predict" method="POST">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" required>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+
+            <label for="education">Education Level (Number of Years in School):</label>
+            <input type="number" id="education" name="education" placeholder="Number of years in school" required>
+
+            <label for="employment_status">Employment Status:</label>
+            <select id="employment_status" name="employment_status" required>
+                <option value="Employed">Employed</option>
+                <option value="Unemployed">Unemployed</option>
+                <option value="Retired">Retired</option>
+            </select>
+
+            <label for="dominant_hand">Dominant Hand:</label>
+            <select id="dominant_hand" name="dominant_hand" required>
+                <option value="Right">Right</option>
+                <option value="Left">Left</option>
+            </select>
+
+            <label for="visits">Number of Visits:</label>
+            <input type="number" id="visits" name="visits" placeholder="Number of hospital visits this year" required>
+
+            <label for="ses">Socioeconomic Status (SES):</label>
+            <input type="number" id="ses" name="ses" placeholder="1-5 score (5=>richest, 4=>rich, 3=>middle, 2=>poor, 1=>very poor )" required>
+
+            <label for="physical_activity">Physical Activity:</label>
+            <select id="physical_activity" name="physical_activity" required>
+                <option value="None">None</option>
+                <option value="Daily">Daily</option>
+                <option value="Sometimes">Sometimes</option>
+            </select>
+
+            <label for="smoking_status">Smoking Status:</label>
+            <select id="smoking_status" name="smoking_status" required>
+                <option value="Smoker">Smoker</option>
+                <option value="Never Smoked">Never Smoked</option>
+            </select>
+
+            <label for="dementia_family_history">Dementia Family History:</label>
+            <select id="dementia_family_history" name="dementia_family_history" required>
+                <option value="Demented">Demented</option>
+                <option value="Non-Demented">Non-Demented</option>
+            </select>
+
+            <label for="depression_status">Depression Status:</label>
+            <select id="depression_status" name="depression_status" required>
+                <option value="Not Depressed">Not Depressed</option>
+                <option value="Mildly Depressed">Mildly Depressed</option>
+                <option value="Depressed">Depressed</option>
+            </select>
+
+            <label for="sleep_quality">Sleep Quality:</label>
+            <select id="sleep_quality" name="sleep_quality" required>
+                <option value="8 hours">8 hours</option>
+                <option value="Less than 8 hours">Less than 8 hours</option>
+                <option value="More than 8 hours">More than 8 hours</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Display prediction result -->
+        {% if prediction %}
+        <div class="result">
+            <p>Prediction: {{ prediction }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Display error message -->
+        {% if error %}
+        <div class="error">
+            <p>Error: {{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
